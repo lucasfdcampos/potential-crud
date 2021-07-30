@@ -1,7 +1,9 @@
+import { getCustomRepository } from 'typeorm';
+
 import Developer from '../models/Developer';
 import DevelopersRepository from '../repositories/DevelopersRepository';
 
-interface RequestDTO {
+interface IRequest {
   name: string;
   sex: string;
   age: number;
@@ -10,20 +12,24 @@ interface RequestDTO {
 }
 
 class CreateDeveloperService {
-  private developersRepository: DevelopersRepository;
+  public async execute({
+    name,
+    sex,
+    age,
+    hobby,
+    birthdate,
+  }: IRequest): Promise<Developer> {
+    const developersRepository = getCustomRepository(DevelopersRepository);
 
-  constructor(developersRepository: DevelopersRepository) {
-    this.developersRepository = developersRepository;
-  }
-
-  public execute({ name, sex, age, hobby, birthdate }: RequestDTO): Developer {
-    const developer = this.developersRepository.create({
+    const developer = developersRepository.create({
       name,
       sex,
       age,
       hobby,
       birthdate,
     });
+
+    await developersRepository.save(developer);
 
     return developer;
   }
