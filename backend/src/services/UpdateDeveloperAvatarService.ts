@@ -2,6 +2,8 @@ import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
 
+import AppError from '../errors/AppError';
+
 import Developer from '../models/Developer';
 import uploadConfig from '../config/upload';
 
@@ -16,11 +18,11 @@ class UpdateDeveloperAvatarService {
     avatarFilename,
   }: IRequest): Promise<Developer> {
     if (!avatarFilename) {
-      throw new Error('Invalid or empty file.');
+      throw new AppError('Invalid or empty file.');
     }
 
     if (!developer_id) {
-      throw new Error('Invalid developer.');
+      throw new AppError('Invalid developer.');
     }
 
     const developersRepository = getRepository(Developer);
@@ -28,7 +30,7 @@ class UpdateDeveloperAvatarService {
     const developer = await developersRepository.findOne(developer_id);
 
     if (!developer) {
-      throw new Error('Invalid developer.');
+      throw new AppError('Invalid developer.');
     }
 
     // Deleta avatar
