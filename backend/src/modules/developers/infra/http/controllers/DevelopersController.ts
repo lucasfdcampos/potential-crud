@@ -10,6 +10,7 @@ export default class DeveloperController {
     const { name, sex, age, hobby, birthdate } = request.body;
 
     const parsedBirthDate = parseISO(birthdate);
+    console.log(parsedBirthDate);
 
     const createDeveloperService = container.resolve(CreateDeveloperService);
 

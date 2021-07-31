@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 import uploadConfig from '@config/upload';
 
@@ -17,10 +18,27 @@ developersRouter.use(ensureAuthenticated);
 
 developersRouter.get('/', developersController.index);
 
-developersRouter.post('/', developersController.create);
+developersRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      sex: Joi.string().required(),
+      age: Joi.number().required(),
+      hobby: Joi.string().required(),
+      birthdate: Joi.date().raw().required(),
+    },
+  }),
+  developersController.create,
+);
 
 developersRouter.patch(
   '/avatar',
+  celebrate({
+    [Segments.QUERY]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
   upload.single('avatar'),
   developerAvatarController.update,
 );
