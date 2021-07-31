@@ -1,18 +1,25 @@
-import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
+import { injectable, inject } from 'tsyringe';
 
-import AppError from '../errors/AppError';
+import IDevelopersRepository from '@modules/developers/repositories/IDevelopersRepository';
+import AppError from '@shared/errors/AppError';
 
-import Developer from '../models/Developer';
-import uploadConfig from '../config/upload';
+import Developer from '@modules/developers/infra/typeorm/entities/Developer';
+import uploadConfig from '@config/upload';
 
 interface IRequest {
   developer_id?: string;
   avatarFilename?: string;
 }
 
+@injectable()
 class UpdateDeveloperAvatarService {
+  constructor(
+    @inject('DevelopersRepository')
+    private developersRepository: IDevelopersRepository,
+  ) {}
+
   public async execute({
     developer_id,
     avatarFilename,
@@ -25,9 +32,7 @@ class UpdateDeveloperAvatarService {
       throw new AppError('Invalid developer.');
     }
 
-    const developersRepository = getRepository(Developer);
-
-    const developer = await developersRepository.findOne(developer_id);
+    const developer = await this.developersRepository.findById(developer_id);
 
     if (!developer) {
       throw new AppError('Invalid developer.');
@@ -53,7 +58,7 @@ class UpdateDeveloperAvatarService {
 
     developer.avatar = avatarFilename;
 
-    await developersRepository.save(developer);
+    await this.developersRepository.save(developer);
 
     return developer;
   }
