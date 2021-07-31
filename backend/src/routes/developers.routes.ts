@@ -5,7 +5,11 @@ import { parseISO } from 'date-fns';
 import DevelopersRepository from '../repositories/DevelopersRepository';
 import CreateDeveloperService from '../services/CreateDeveloperService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const developersRouter = Router();
+
+developersRouter.use(ensureAuthenticated);
 
 developersRouter.get('/', async (request, response) => {
   const developersRepository = getCustomRepository(DevelopersRepository);
