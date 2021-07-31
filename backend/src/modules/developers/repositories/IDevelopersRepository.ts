@@ -6,4 +6,5 @@ export default interface IDevelopersRepository {
   findAll(): Promise<Developer[]>;
   create(data: ICreateDeveloperDTO): Promise<Developer>;
   save(developer: Developer): Promise<Developer>;
+  delete(id: string): Promise<number>;
 }

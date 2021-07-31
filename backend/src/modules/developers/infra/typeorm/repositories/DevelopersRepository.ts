@@ -47,6 +47,16 @@ class DevelopersRepository implements IDevelopersRepository {
   public async save(developer: Developer): Promise<Developer> {
     return this.ormRepository.save(developer);
   }
+
+  public async delete(id: string): Promise<number> {
+    let { affected } = await this.ormRepository.delete(id);
+
+    if (!affected) {
+      affected = 0;
+    }
+
+    return affected as number;
+  }
 }
 
 export default DevelopersRepository;

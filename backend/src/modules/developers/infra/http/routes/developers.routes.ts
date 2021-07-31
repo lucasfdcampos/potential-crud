@@ -32,6 +32,33 @@ developersRouter.post(
   developersController.create,
 );
 
+developersRouter.put(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      id: Joi.string().uuid().required(),
+    },
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      sex: Joi.string().required(),
+      age: Joi.number().required(),
+      hobby: Joi.string().required(),
+      birthdate: Joi.date().raw().required(),
+    },
+  }),
+  developersController.update,
+);
+
+developersRouter.delete(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  developersController.delete,
+);
+
 developersRouter.patch(
   '/avatar',
   celebrate({
