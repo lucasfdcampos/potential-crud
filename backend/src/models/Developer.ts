@@ -26,6 +26,9 @@ class Developer {
   @Column('timestamp with time zone')
   birthdate: Date;
 
+  @Column()
+  avatar: string;
+
   @CreateDateColumn()
   created_at: Date;
 

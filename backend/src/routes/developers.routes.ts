@@ -1,13 +1,19 @@
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
+import multer from 'multer';
+
+import uploadConfig from '../config/upload';
 
 import DevelopersRepository from '../repositories/DevelopersRepository';
 import CreateDeveloperService from '../services/CreateDeveloperService';
+import UpdateDeveloperAvatarService from '../services/UpdateDeveloperAvatarService';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const developersRouter = Router();
+
+const upload = multer(uploadConfig);
 
 developersRouter.use(ensureAuthenticated);
 
@@ -39,5 +45,20 @@ developersRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message });
   }
 });
+
+developersRouter.patch(
+  '/avatar',
+  upload.single('avatar'),
+  async (request, response) => {
+    const updateDeveloperAvatarService = new UpdateDeveloperAvatarService();
+
+    const developer = await updateDeveloperAvatarService.execute({
+      developer_id: request.query.id?.toString(),
+      avatarFilename: request.file?.filename,
+    });
+
+    return response.json(developer);
+  },
+);
 
 export default developersRouter;
