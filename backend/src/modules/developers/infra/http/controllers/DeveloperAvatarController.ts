@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import UpdateDeveloperAvatarService from '@modules/developers/services/UpdateDeveloperAvatarService';
 
@@ -14,10 +15,6 @@ export default class ClientsAvatarController {
       avatarFilename: request.file?.filename,
     });
 
-    return response.json(developer);
-  }
-
-  public async index(request: Request, response: Response): Promise<Response> {
-    return response.json({ ok: true });
+    return response.json(classToClass(developer));
   }
 }

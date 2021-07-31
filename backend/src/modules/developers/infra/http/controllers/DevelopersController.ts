@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { parseISO } from 'date-fns';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import CreateDeveloperService from '@modules/developers/services/CreateDeveloperService';
 import ListDeveloperService from '@modules/developers/services/ListDeveloperService';
@@ -10,7 +11,6 @@ export default class DeveloperController {
     const { name, sex, age, hobby, birthdate } = request.body;
 
     const parsedBirthDate = parseISO(birthdate);
-    console.log(parsedBirthDate);
 
     const createDeveloperService = container.resolve(CreateDeveloperService);
 
@@ -22,13 +22,13 @@ export default class DeveloperController {
       birthdate: parsedBirthDate,
     });
 
-    return response.json(developer);
+    return response.json(classToClass(developer));
   }
   public async index(request: Request, response: Response): Promise<Response> {
     const listClientService = container.resolve(ListDeveloperService);
 
     const developers = await listClientService.execute();
 
-    return response.json(developers);
+    return response.json(classToClass(developers));
   }
 }
