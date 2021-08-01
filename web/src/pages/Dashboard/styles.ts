@@ -150,7 +150,7 @@ export const DeveloperCard = styled.article`
   @media (max-width: 1120px) {
     flex-direction: column;
     justify-content: space-between;
-    height: 220px;
+    height: 240px;
     gap: 0rem;
 
     &:hover,
@@ -239,10 +239,6 @@ export const DeveloperName = styled.div`
   }
 `;
 
-interface SituationProps {
-  situation?: string;
-}
-
 export const DeveloperBio = styled.div`
   display: flex;
   flex-direction: row;
@@ -286,9 +282,13 @@ export const DeveloperBio = styled.div`
   @media (max-width: 1120px) {
     flex-direction: column;
     gap: 1rem;
-    padding-top: 0rem;
+    padding: 1rem;
   }
 `;
+
+interface SituationProps {
+  situation?: string;
+}
 
 export const DeveloperStatus = styled.div<SituationProps>`
   padding-top: 2rem;
@@ -336,6 +336,74 @@ export const DeveloperStatus = styled.div<SituationProps>`
 
   @media (max-width: 1120px) {
     padding-top: 0rem;
+  }
+`;
+
+export const DeveloperAction = styled.div`
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 1120px) {
+    padding: 1rem;
+    width: 100%;
+    border-top: 1px solid #202024;
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+    svg {
+      fill: #a8a8b3;
+      width: 24px;
+
+      transition: all 0.2s ease-in-out 0s;
+
+      @keyframes openTrash {
+        0% {
+          transform: rotate(0deg) translateY(0px);
+        }
+        100% {
+          transform: rotate(-25deg) translateY(-5px);
+        }
+      }
+
+      @keyframes closeTrash {
+        0% {
+          transform: rotate(-25deg) translateY(-5px);
+        }
+        100% {
+          transform: rotate(0deg) translateY(0px);
+        }
+      }
+    }
+
+    &:hover {
+      svg {
+        fill: #348df3;
+      }
+
+      .coverHead {
+        animation: openTrash 0.4s forwards;
+      }
+    }
+
+    &:active {
+      svg {
+        fill: #5b61fd;
+      }
+
+      .coverHead {
+        animation: closeTrash 0.4s forwards;
+      }
+    }
   }
 `;
 
