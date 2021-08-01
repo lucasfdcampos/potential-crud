@@ -62,7 +62,7 @@ const Dashboard: React.FC = () => {
               <Title>
                 <h2>Developers</h2>
                 <Link to="/developers/create">
-                  <ButtonCreate>ADICIONAR</ButtonCreate>
+                  <ButtonCreate type="button">ADICIONAR</ButtonCreate>
                 </Link>
               </Title>
 

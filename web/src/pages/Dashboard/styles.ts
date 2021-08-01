@@ -80,7 +80,7 @@ export const ButtonCreate = styled.button`
   color: #fff;
   outline: 0;
   padding: 0 16px;
-  letter-spacing: 0.1px;
+  letter-spacing: 0.5px;
   font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
@@ -92,7 +92,8 @@ export const ButtonCreate = styled.button`
   }
 
   &:active {
-    background: ${shade(0.2, '#ff9d2e')};
+    background: ${shade(0.5, '#ff9d2e')};
+    border: 2px solid ${shade(0.2, '#ff9d2e')};
     color: #202024;
   }
 `;
@@ -176,6 +177,7 @@ export const DeveloperDate = styled.div`
 export const DeveloperIdentication = styled.div`
   display: flex;
   align-items: center;
+  width: 400px;
   gap: 4rem;
   padding-top: 2rem;
 
@@ -204,6 +206,7 @@ export const DeveloperIdentication = styled.div`
   }
 
   @media (max-width: 1120px) {
+    justify-content: center;
     gap: 2rem;
     padding-top: 1rem;
 
@@ -245,6 +248,7 @@ export const DeveloperBio = styled.div`
   flex-direction: row;
   text-align: center;
   align-items: center;
+  justify-content: center;
 
   padding-top: 2rem;
   gap: 4rem;
