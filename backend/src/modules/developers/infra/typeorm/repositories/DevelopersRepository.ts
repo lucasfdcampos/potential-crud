@@ -30,6 +30,7 @@ class DevelopersRepository implements IDevelopersRepository {
     age,
     hobby,
     birthdate,
+    avatar,
   }: ICreateDeveloperDTO): Promise<Developer> {
     const developer = this.ormRepository.create({
       name,
@@ -37,6 +38,7 @@ class DevelopersRepository implements IDevelopersRepository {
       age,
       hobby,
       birthdate,
+      avatar,
     });
 
     await this.ormRepository.save(developer);

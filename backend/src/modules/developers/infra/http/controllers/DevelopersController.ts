@@ -7,6 +7,7 @@ import CreateDeveloperService from '@modules/developers/services/CreateDeveloper
 import UpdateDeveloperService from '@modules/developers/services/UpdateDeveloperService';
 import DeleteDeveloperService from '@modules/developers/services/DeleteDeveloperService';
 import ListDeveloperService from '@modules/developers/services/ListDeveloperService';
+import FindDeveloperService from '@modules/developers/services/FindDeveloperService';
 
 export default class DeveloperController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -22,6 +23,7 @@ export default class DeveloperController {
       age,
       hobby,
       birthdate: parsedBirthDate,
+      avatar: 'gazin-teo.jpeg',
     });
 
     return response.json(classToClass(developer));
@@ -33,7 +35,7 @@ export default class DeveloperController {
     const updateDeveloperService = container.resolve(UpdateDeveloperService);
 
     const developerUpdate = await updateDeveloperService.execute({
-      id: request.query.id as string,
+      id: request.params.id as string,
       name,
       sex,
       age,
@@ -45,7 +47,7 @@ export default class DeveloperController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const id = request.query.id as string;
+    const id = request.params.id as string;
 
     const deleteDeveloperService = container.resolve(DeleteDeveloperService);
 
@@ -60,5 +62,15 @@ export default class DeveloperController {
     const developers = await listClientService.execute();
 
     return response.json(classToClass(developers));
+  }
+
+  public async find(request: Request, response: Response): Promise<Response> {
+    const id = request.params.id as string;
+
+    const findClientService = container.resolve(FindDeveloperService);
+
+    const developer = await findClientService.execute(id);
+
+    return response.json(classToClass(developer));
   }
 }

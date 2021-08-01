@@ -10,6 +10,7 @@ function Routes() {
       <Switch>
         <Route path="/" exact component={Dashboard} />
         <Route path="/developers/create" component={CreateDeveloper} />
+        <Route path="/developers/:id" component={CreateDeveloper} />
       </Switch>
     </BrowserRouter>
   );

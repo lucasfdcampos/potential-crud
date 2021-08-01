@@ -1,5 +1,6 @@
-import React, { useState, FormEvent } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, FormEvent } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { format, parseISO } from 'date-fns';
 
 import Navbar from '../../components/Navbar';
 import api from '../../services/api';
@@ -15,28 +16,75 @@ import {
   ButtonSave,
 } from './styles';
 
+interface Developer {
+  id: string;
+  name: string;
+  sex: string;
+  age: string;
+  birthdate: string;
+  hobby: string;
+  created_at: string;
+  avatar_url: string;
+}
+
+interface DeveloperParams {
+  id: string;
+}
+
 const CreateDevelopers: React.FC = () => {
+  const params = useParams<DeveloperParams>();
   const history = useHistory();
 
+  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [sex, setSex] = useState('');
   const [age, setAge] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [hobby, setHobby] = useState('');
 
+  const [developer, setDeveloper] = useState<Developer>();
+
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    await api.post('developers', {
-      name,
-      sex,
-      age,
-      birthdate,
-      hobby,
-    });
+    if (!id) {
+      await api.post('developers', {
+        name,
+        sex,
+        age: Number(age),
+        birthdate,
+        hobby,
+      });
+    } else {
+      await api.put(`developers/${params.id}`, {
+        name,
+        sex,
+        age: Number(age),
+        birthdate,
+        hobby,
+      });
+    }
 
     history.push('/');
   }
+
+  useEffect(() => {
+    api.get<Developer>(`developers/${params.id}`).then(response => {
+      setDeveloper(response.data);
+      setId(response.data.id);
+      setName(response.data.name);
+      setSex(response.data.sex);
+      setAge(response.data.age);
+
+      const formattedBirthdate = format(
+        parseISO(response.data.birthdate),
+        'yyyy-MM-dd',
+      );
+
+      setBirthdate(formattedBirthdate);
+      setHobby(response.data.hobby);
+    });
+  }, [params.id]);
 
   return (
     <Container>

@@ -8,13 +8,13 @@ import Developer from '@modules/developers/infra/typeorm/entities/Developer';
 class ListDeveloperService {
   constructor(
     @inject('DevelopersRepository')
-    private developerRepository: IDevelopersRepository,
+    private developersRepository: IDevelopersRepository,
   ) {}
 
   public async execute(): Promise<Developer[]> {
-    const clients = await this.developerRepository.findAll();
+    const developers = await this.developersRepository.findAll();
 
-    return clients;
+    return developers;
   }
 }
 

@@ -70,13 +70,13 @@ const Dashboard: React.FC = () => {
               </Title>
 
               {developers.map(developer => (
-                <DeveloperCard>
+                <DeveloperCard key={developer.id}>
                   <DeveloperDate>
                     <p>{developer.created_at}</p>
                   </DeveloperDate>
 
                   <DeveloperIdentication>
-                    <Link to="/developers/1">
+                    <Link to={`/developers/${developer.id}`}>
                       <Avatar>
                         <img src={developer.avatar_url} alt={developer.name} />
                       </Avatar>
@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
                       </svg>
                     </Link>
 
-                    <Link to="/developers/1">
+                    <Link to={`/developers/${developer.id}`}>
                       <DeveloperName>
                         <span className="title">{developer.name}</span>
                         <p>

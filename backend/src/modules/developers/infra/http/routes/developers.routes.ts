@@ -14,9 +14,19 @@ const developerAvatarController = new DeveloperAvatarController();
 
 const upload = multer(uploadConfig);
 
-developersRouter.use(ensureAuthenticated);
+//developersRouter.use(ensureAuthenticated);
 
 developersRouter.get('/', developersController.index);
+
+developersRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  developersController.find,
+);
 
 developersRouter.post(
   '/',
@@ -33,9 +43,9 @@ developersRouter.post(
 );
 
 developersRouter.put(
-  '/',
+  '/:id',
   celebrate({
-    [Segments.QUERY]: {
+    [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
     [Segments.BODY]: {
@@ -50,9 +60,9 @@ developersRouter.put(
 );
 
 developersRouter.delete(
-  '/',
+  '/:id',
   celebrate({
-    [Segments.QUERY]: {
+    [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
   }),

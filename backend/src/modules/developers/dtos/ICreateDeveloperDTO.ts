@@ -4,4 +4,5 @@ export default interface ICreateDeveloperDTO {
   age: number;
   hobby: string;
   birthdate: Date;
+  avatar: string;
 }

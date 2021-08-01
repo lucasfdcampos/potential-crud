@@ -9,6 +9,7 @@ interface IRequest {
   age: number;
   hobby: string;
   birthdate: Date;
+  avatar: string;
 }
 
 @injectable()
@@ -24,6 +25,7 @@ class CreateDeveloperService {
     age,
     hobby,
     birthdate,
+    avatar,
   }: IRequest): Promise<Developer> {
     const developer = await this.developersRepository.create({
       name,
@@ -31,6 +33,7 @@ class CreateDeveloperService {
       age,
       hobby,
       birthdate,
+      avatar,
     });
 
     return developer;
