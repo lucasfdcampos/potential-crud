@@ -42,8 +42,6 @@ const CreateDevelopers: React.FC = () => {
   const [birthdate, setBirthdate] = useState('');
   const [hobby, setHobby] = useState('');
 
-  const [developer, setDeveloper] = useState<Developer>();
-
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
@@ -69,21 +67,22 @@ const CreateDevelopers: React.FC = () => {
   }
 
   useEffect(() => {
-    api.get<Developer>(`developers/${params.id}`).then(response => {
-      setDeveloper(response.data);
-      setId(response.data.id);
-      setName(response.data.name);
-      setSex(response.data.sex);
-      setAge(response.data.age);
+    if (params.id) {
+      api.get<Developer>(`developers/${params.id}`).then(response => {
+        setId(response.data.id);
+        setName(response.data.name);
+        setSex(response.data.sex);
+        setAge(response.data.age);
 
-      const formattedBirthdate = format(
-        parseISO(response.data.birthdate),
-        'yyyy-MM-dd',
-      );
+        const formattedBirthdate = format(
+          parseISO(response.data.birthdate),
+          'yyyy-MM-dd',
+        );
 
-      setBirthdate(formattedBirthdate);
-      setHobby(response.data.hobby);
-    });
+        setBirthdate(formattedBirthdate);
+        setHobby(response.data.hobby);
+      });
+    }
   }, [params.id]);
 
   return (
@@ -92,7 +91,7 @@ const CreateDevelopers: React.FC = () => {
       <Wrapper>
         <Content>
           <Main>
-            <h2>Novo Developer</h2>
+            <h2>{!id ? 'Novo Developer' : 'Alterar'}</h2>
             <form onSubmit={handleSubmit}>
               <InputBlock>
                 <Label htmlFor="name">Nome</Label>

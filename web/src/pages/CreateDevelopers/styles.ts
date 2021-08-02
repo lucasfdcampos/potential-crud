@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { lighten, shade } from 'polished';
+import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -80,7 +80,11 @@ export const Input = styled.input`
   outline: 0px;
   font-size: 18px;
   padding: 12px;
-  color: #666360;
+  color: #e1e1e6;
+
+  &::placeholder {
+    color: #666360;
+  }
 
   &:focus {
     border-color: #737380;

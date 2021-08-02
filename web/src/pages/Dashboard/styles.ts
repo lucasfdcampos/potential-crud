@@ -69,22 +69,69 @@ export const Title = styled.div`
   margin: 0px 0px 1.333em;
 
   height: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  > div {
+    display: flex;
+    gap: 2rem;
+  }
 `;
 
-export const ButtonCreate = styled.button`
+export const SearchBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+`;
+
+export const Input = styled.input`
+  background: #121214;
+  border-radius: 5px 0px 0px 5px;
+  border: 2px solid #0b0b0d;
+  height: 42px;
+  outline: 0px;
+  font-size: 18px;
+  padding: 12px;
+  color: #e1e1e6;
+
+  &::placeholder {
+    color: #666360;
+  }
+
+  &:focus {
+    border-color: #737380;
+  }
+
+  @media (max-width: 500px) {
+    width: calc(100% - 10px);
+  }
+`;
+
+export const ButtonSearch = styled.button`
   background: #ff9d2e;
   border: 2px solid #ff9d2e;
-  border-radius: 6px;
-  width: 174px;
-  height: 54px;
+  border-radius: 0px 5px 5px 0px;
+  width: 50px;
+  height: 42px;
   color: #fff;
-  outline: 0;
-  padding: 0 16px;
-  letter-spacing: 0.5px;
-  font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 
   &:hover {
     background: transparent;
@@ -95,6 +142,51 @@ export const ButtonCreate = styled.button`
     background: ${shade(0.5, '#ff9d2e')};
     border: 2px solid ${shade(0.2, '#ff9d2e')};
     color: #202024;
+  }
+`;
+
+export const ButtonCreate = styled.button`
+  background: #ff9d2e;
+  border: 2px solid #ff9d2e;
+  border-radius: 6px;
+  width: 174px;
+  height: 42px;
+  color: #fff;
+  outline: 0;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  &:hover {
+    background: transparent;
+    color: #ff9d2e;
+  }
+
+  &:active {
+    background: ${shade(0.5, '#ff9d2e')};
+    border: 2px solid ${shade(0.2, '#ff9d2e')};
+    color: #202024;
+  }
+
+  @media (max-width: 768px) {
+    width: 50px;
+
+    p {
+      visibility: hidden;
+      display: none;
+    }
   }
 `;
 

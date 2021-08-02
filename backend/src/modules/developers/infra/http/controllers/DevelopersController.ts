@@ -8,6 +8,7 @@ import UpdateDeveloperService from '@modules/developers/services/UpdateDeveloper
 import DeleteDeveloperService from '@modules/developers/services/DeleteDeveloperService';
 import ListDeveloperService from '@modules/developers/services/ListDeveloperService';
 import FindDeveloperService from '@modules/developers/services/FindDeveloperService';
+import FindByNameDeveloperService from '@modules/developers/services/FindByNameDeveloperService';
 
 export default class DeveloperController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -56,20 +57,37 @@ export default class DeveloperController {
     return response.json(result);
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
-    const listClientService = container.resolve(ListDeveloperService);
+  public async index(
+    request: Request,
+    response: Response,
+  ): Promise<Response | undefined> {
+    const name = request.query.name as string;
 
-    const developers = await listClientService.execute();
+    if (name) {
+      if (name.trim().length > 0) {
+        const findByNameDeveloperService = container.resolve(
+          FindByNameDeveloperService,
+        );
 
-    return response.json(classToClass(developers));
+        const developers = await findByNameDeveloperService.execute(name);
+
+        return response.json(classToClass(developers));
+      }
+    } else {
+      const listClientService = container.resolve(ListDeveloperService);
+
+      const developers = await listClientService.execute();
+
+      return response.json(classToClass(developers));
+    }
   }
 
   public async find(request: Request, response: Response): Promise<Response> {
     const id = request.params.id as string;
 
-    const findClientService = container.resolve(FindDeveloperService);
+    const findDeveloperService = container.resolve(FindDeveloperService);
 
-    const developer = await findClientService.execute(id);
+    const developer = await findDeveloperService.execute(id);
 
     return response.json(classToClass(developer));
   }

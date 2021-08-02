@@ -4,6 +4,7 @@ import ICreateDeveloperDTO from '@modules/developers/dtos/ICreateDeveloperDTO';
 export default interface IDevelopersRepository {
   findById(id: string): Promise<Developer | undefined>;
   findAll(): Promise<Developer[]>;
+  findByName(name: string): Promise<Developer[]>;
   create(data: ICreateDeveloperDTO): Promise<Developer>;
   save(developer: Developer): Promise<Developer>;
   delete(id: string): Promise<number>;

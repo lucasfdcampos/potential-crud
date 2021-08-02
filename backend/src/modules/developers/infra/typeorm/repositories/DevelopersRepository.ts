@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Like } from 'typeorm';
 
 import IDevelopersRepository from '@modules/developers/repositories/IDevelopersRepository';
 import ICreateDeveloperDTO from '@modules/developers/dtos/ICreateDeveloperDTO';
@@ -22,6 +22,14 @@ class DevelopersRepository implements IDevelopersRepository {
     const findAll = await this.ormRepository.find();
 
     return findAll;
+  }
+
+  public async findByName(name: string): Promise<Developer[]> {
+    const developers = await this.ormRepository.find({
+      name: Like(`%${name}%`),
+    });
+
+    return developers;
   }
 
   public async create({

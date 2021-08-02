@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { FiCalendar } from 'react-icons/fi';
+import { FiCalendar, FiPlus, FiSearch } from 'react-icons/fi';
 import { format, parseISO } from 'date-fns';
 
 import { Link } from 'react-router-dom';
@@ -12,6 +12,9 @@ import {
   Main,
   List,
   Title,
+  SearchBox,
+  Input,
+  ButtonSearch,
   ButtonCreate,
   DeveloperCard,
   DeveloperDate,
@@ -37,12 +40,9 @@ interface Developer {
 
 const Dashboard: React.FC = () => {
   const [developers, setDevelopers] = useState<Developer[]>([]);
+  const [name, setName] = useState('');
 
-  async function handleDeleteDeveloper(id: string) {
-    await api.delete(`developers/${id}`);
-  }
-
-  useEffect(() => {
+  async function loadDevelopers() {
     api.get<Developer[]>('/developers').then(response => {
       const developerFormatted = response.data.map(developer => {
         return {
@@ -53,7 +53,35 @@ const Dashboard: React.FC = () => {
       });
       setDevelopers(developerFormatted);
     });
-  }, [developers]);
+  }
+
+  const handleDeleteDeveloper = useCallback(async (id: string) => {
+    await api.delete(`developers/${id}`);
+    loadDevelopers();
+  }, []);
+
+  async function handleSearch() {
+    if (name.length > 0) {
+      await api
+        .get<Developer[]>('/developers', { params: { name } })
+        .then(response => {
+          const developerFormatted = response.data.map(developer => {
+            return {
+              ...developer,
+              created_at: format(parseISO(developer.created_at), 'd MMM yy'),
+              birthdate: format(parseISO(developer.birthdate), 'dd/MM/yyyy'),
+            };
+          });
+          setDevelopers(developerFormatted);
+        });
+    } else {
+      loadDevelopers();
+    }
+  }
+
+  useEffect(() => {
+    loadDevelopers();
+  }, []);
 
   return (
     <Container>
@@ -64,9 +92,28 @@ const Dashboard: React.FC = () => {
             <List>
               <Title>
                 <h2>Developers</h2>
-                <Link to="/developers/create">
-                  <ButtonCreate type="button">ADICIONAR</ButtonCreate>
-                </Link>
+
+                <div>
+                  <SearchBox>
+                    <Input
+                      type="text"
+                      id="name"
+                      autoComplete="off"
+                      value={name}
+                      placeholder="Pesquise o Nome"
+                      onChange={event => setName(event.target.value)}
+                    />
+                    <ButtonSearch type="button" onClick={handleSearch}>
+                      <FiSearch />
+                    </ButtonSearch>
+                  </SearchBox>
+                  <Link to="/developers/create">
+                    <ButtonCreate type="button">
+                      <FiPlus />
+                      <p>ADICIONAR</p>
+                    </ButtonCreate>
+                  </Link>
+                </div>
               </Title>
 
               {developers.map(developer => (
@@ -115,7 +162,7 @@ const Dashboard: React.FC = () => {
                   <DeveloperAction>
                     <button
                       type="button"
-                      onClick={event => handleDeleteDeveloper(developer.id)}
+                      onClick={() => handleDeleteDeveloper(developer.id)}
                     >
                       <svg
                         className="coverHead"
