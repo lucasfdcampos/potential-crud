@@ -63,19 +63,124 @@ export const InputBlock = styled.div`
   & + div {
     margin-top: 0.5rem;
   }
+
+  & .Select__control {
+    background-color: #121214;
+    box-shadow: 0 0 0 0px #121214;
+    border-radius: 5px;
+    border: 2px solid #121214;
+
+    width: 100%;
+    height: 50px;
+
+    transition: border-color 0.3s ease-in-out 0s, color 0.3s ease-in-out 0s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: #ff9d2e;
+    }
+
+    &:hover {
+      & .Select__clear-indicator {
+        visibility: visible;
+      }
+
+      & .Select__indicator svg {
+        color: #ff9d2e;
+      }
+    }
+
+    & .Select__placeholder {
+      font-size: 16px;
+      color: #666360;
+    }
+
+    & .Select__single-value {
+      font-size: 16px;
+      color: #e1e1e6;
+    }
+
+    & .Select__indicator-separator {
+      background-color: #29292e;
+    }
+
+    & .Select__indicator {
+      transition: color 0.3s ease-in-out 0s;
+      color: #29292e;
+
+      &:hover {
+        color: #ff9d2e;
+      }
+
+      &:active {
+        color: #ff9d2e;
+      }
+    }
+  }
+
+  & .Select__control--menu-is-open {
+    border-color: #ff9d2e;
+
+    .Select__indicator svg {
+      color: #ff9d2e;
+    }
+  }
+
+  & .Select__value-container {
+    padding: 2px 8px;
+  }
+
+  & .Select__menu {
+    background-color: #29292e;
+    border-radius: 5px;
+    border: 2px solid #29292e;
+    box-shadow: #00000099 0px 5px 20px;
+
+    font-size: 16px;
+    animation: fadeIn 0.3s ease-in-out;
+
+    & .Select__option {
+      color: #45454d;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: #e1e1e6;
+        background-color: #666360;
+      }
+
+      &:active {
+        background-color: #ff9d2e;
+      }
+    }
+
+    & .Select__option--is-selected {
+      color: #fff;
+      background-color: #ff9d2e;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Label = styled.label`
   display: block;
   font-size: 14px;
-  color: #fff;
+  color: #a8a8b3;
   padding: 15px 10px 15px 0px;
 `;
 
 export const Input = styled.input`
   background: #121214;
   border-radius: 5px;
-  border: 1px solid #0b0b0d;
+  border: 0;
   height: 42px;
   outline: 0px;
   font-size: 18px;

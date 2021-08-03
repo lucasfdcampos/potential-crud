@@ -150,14 +150,6 @@ const Dashboard: React.FC = () => {
                     </div>
                     <p>{developer.hobby}</p>
                   </DeveloperBio>
-                  {/*
-                  <DeveloperStatus situation="ativo">
-                    <div>
-                      <span>Ativo</span>
-                      <span>Inativo</span>
-                    </div>
-                  </DeveloperStatus>
-                  */}
 
                   <DeveloperAction>
                     <button

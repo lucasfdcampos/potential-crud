@@ -1,6 +1,7 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
+import Select from 'react-select';
 
 import Navbar from '../../components/Navbar';
 import api from '../../services/api';
@@ -30,6 +31,11 @@ interface Developer {
 interface DeveloperParams {
   id: string;
 }
+
+const options = [
+  { value: 'F', label: 'Feminino' },
+  { value: 'M', label: 'Masculino' },
+];
 
 const CreateDevelopers: React.FC = () => {
   const params = useParams<DeveloperParams>();
@@ -96,6 +102,7 @@ const CreateDevelopers: React.FC = () => {
               <InputBlock>
                 <Label htmlFor="name">Nome</Label>
                 <Input
+                  autoFocus
                   type="text"
                   id="name"
                   autoComplete="off"
@@ -105,18 +112,20 @@ const CreateDevelopers: React.FC = () => {
               </InputBlock>
               <InputBlock>
                 <Label htmlFor="sex">Sexo</Label>
-                <Input
-                  type="text"
-                  id="sex"
-                  autoComplete="off"
-                  value={sex}
-                  onChange={event => setSex(event.target.value)}
+                <Select
+                  id="gender"
+                  name="gender"
+                  classNamePrefix="Select"
+                  options={options}
+                  value={options.filter(option => option.value === sex)}
+                  placeholder="Selecione uma opção"
+                  onChange={event => setSex(event?.value as string)}
                 />
               </InputBlock>
               <InputBlock>
                 <Label htmlFor="age">Idade</Label>
                 <Input
-                  type="text"
+                  type="number"
                   id="age"
                   autoComplete="off"
                   value={age}
@@ -126,9 +135,9 @@ const CreateDevelopers: React.FC = () => {
               <InputBlock>
                 <Label htmlFor="birthdate">Data Nascimento</Label>
                 <Input
-                  type="text"
                   id="birthdate"
                   autoComplete="off"
+                  type="date"
                   value={birthdate}
                   onChange={event => setBirthdate(event.target.value)}
                 />

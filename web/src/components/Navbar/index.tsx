@@ -11,10 +11,7 @@ const Navbar: React.FC = () => {
         <Logo>
           <img src={logoImg} alt="" />
         </Logo>
-        <MenuRight>
-          <span>Lucas Campos</span>&nbsp;
-          <p>Sair</p>
-        </MenuRight>
+        <MenuRight />
       </Header>
     </Container>
   );

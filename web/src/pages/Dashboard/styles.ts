@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { lighten, shade } from 'polished';
 
 export const Container = styled.div`
@@ -92,12 +92,14 @@ export const SearchBox = styled.div`
 export const Input = styled.input`
   background: #121214;
   border-radius: 5px 0px 0px 5px;
-  border: 2px solid #0b0b0d;
+  border: 0;
   height: 42px;
-  outline: 0px;
-  font-size: 18px;
+  font-size: 16px;
   padding: 12px;
   color: #e1e1e6;
+  outline: none;
+
+  transition: all 0.3s ease 0s;
 
   &::placeholder {
     color: #666360;
@@ -269,7 +271,7 @@ export const DeveloperDate = styled.div`
 export const DeveloperIdentication = styled.div`
   display: flex;
   align-items: center;
-  width: 400px;
+  width: 100%;
   gap: 4rem;
   padding-top: 2rem;
 
@@ -336,7 +338,7 @@ export const DeveloperBio = styled.div`
   flex-direction: row;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  width: 100%;
 
   padding-top: 2rem;
   gap: 4rem;
@@ -375,59 +377,6 @@ export const DeveloperBio = styled.div`
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-  }
-`;
-
-interface SituationProps {
-  situation?: string;
-}
-
-export const DeveloperStatus = styled.div<SituationProps>`
-  padding-top: 2rem;
-  text-align: center;
-
-  div {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-
-    span {
-      color: #45454d;
-      display: flex;
-      align-items: center;
-    }
-
-    &:first-child {
-      ${props =>
-        props.situation === 'ativo' &&
-        css`
-          span:first-child {
-            color: #fff;
-          }
-        `}
-    }
-
-    &:last-child {
-      ${props =>
-        props.situation === 'inativo' &&
-        css`
-          span:last-child {
-            color: #fff;
-          }
-        `}
-    }
-
-    span + span::before {
-      content: '';
-      width: 1px;
-      height: 15px;
-      background: #737380;
-      margin: 0 8px;
-    }
-  }
-
-  @media (max-width: 1120px) {
-    padding-top: 0rem;
   }
 `;
 
