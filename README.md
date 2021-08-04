@@ -127,6 +127,12 @@ Particularmente gostei do front-end. Também adicionei alguns `@media` para deix
 </p>
 
 
+<p align="center">
+  Utilizei um tema <i>dark</i> e as cores da <a href="https://www.gazin.com.br/">Gazin</a>.<br />
+  <img src="web/public/dashboard-04.png" style="max-width:70%;">
+</p>
+
+
 ```bash
 cd web 
 ```
