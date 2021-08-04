@@ -28,6 +28,10 @@
   <a href="#end-points">End-points</a>
 </p>
 
+<p align="center">
+<a href="https://insomnia.rest/run/?label=&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasfdcampos%2Fgazin-tech-potential-crud%2Fmaster%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
+
 ## Sobre
 
 API JSON Rest - CRUD de desenvolvedores.
@@ -115,6 +119,12 @@ yarn test
 No front-end utilizei o `styled-components` para escrever o CSS, pois acredito que há uma melhor separação dos componentes e seus estilos, eliminando bugs devido a colisão de nomes de classes e também acredito numa melhor manutenção do CSS.
 
 Particularmente gostei do front-end. Também adicionei alguns `@media` para deixar o layout com responsividade. Característica que observo bastante nas páginas web atuais. Ficaria melhor se tivesse adicionado a página de Sign In.
+
+<p align="center">
+  <img src="web/public/dashboard-01.png" style="max-width:70%;">
+  <img src="web/public/dashboard-02.png" style="max-width:70%;">
+  <img src="web/public/dashboard-03.png" style="max-width:70%;">
+</p>
 
 
 ```bash
