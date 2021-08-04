@@ -104,6 +104,8 @@ Adicionei rotas de usuário e autenticação, porém o `middleware` que faz a va
 
 Tomei a liberdade de adicionar um avatar ao _developer_, porém não adicionei o update do mesmo no front-end. Via api está funcionando corretamente com o `Multer`. Adicionei com a ideia de deixar o _layout_ da lista de desenvolvedores no front-end mais agradável.
 
+Também não adicionei paginação, pois - ainda - não sei como faze-lo com o TypeORM. Vou buscar como funciona essa particularidade.
+
 ### Insomnia
 
 Importe o `Insomnia.json` no Insomnia ou clique em [Run in Insomnia](#insomniaButton)
