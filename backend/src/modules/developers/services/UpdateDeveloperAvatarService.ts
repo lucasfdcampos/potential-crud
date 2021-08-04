@@ -7,6 +7,7 @@ import AppError from '@shared/errors/AppError';
 
 import Developer from '@modules/developers/infra/typeorm/entities/Developer';
 import uploadConfig from '@config/upload';
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 
 interface IRequest {
   developer_id?: string;
@@ -18,6 +19,9 @@ class UpdateDeveloperAvatarService {
   constructor(
     @inject('DevelopersRepository')
     private developersRepository: IDevelopersRepository,
+
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute({
@@ -40,23 +44,12 @@ class UpdateDeveloperAvatarService {
 
     // Deleta avatar
     if (developer.avatar) {
-      const developerAvatarFilePath = path.join(
-        uploadConfig.directory,
-        developer.avatar,
-      );
-
-      // File system
-      const developerAvatarFileExists = await fs.promises.stat(
-        developerAvatarFilePath,
-      );
-      console.log(developerAvatarFileExists);
-
-      if (developerAvatarFileExists) {
-        await fs.promises.unlink(developerAvatarFilePath);
-      }
+      await this.storageProvider.deleteFile(developer.avatar);
     }
 
-    developer.avatar = avatarFilename;
+    const filename = await this.storageProvider.saveFile(avatarFilename);
+
+    developer.avatar = filename;
 
     await this.developersRepository.save(developer);
 

@@ -6,7 +6,7 @@ import IDevelopersRepository from '@modules/developers/repositories/IDevelopersR
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
-  id?: string;
+  id: string;
   name: string;
   sex: string;
   age: number;
@@ -29,10 +29,6 @@ class UpdateDeveloperService {
     hobby,
     birthdate,
   }: IRequest): Promise<Developer> {
-    if (!id) {
-      throw new AppError('Invalid developer.');
-    }
-
     const developer = await this.developersRepository.findById(id);
 
     if (!developer) {

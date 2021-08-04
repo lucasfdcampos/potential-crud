@@ -9,3 +9,4 @@ ormconfig.json
 dist
 tmp/*
 !tmp/.gitkeep
+!tmp/gazin-teo.jpeg

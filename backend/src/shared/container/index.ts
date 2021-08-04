@@ -1,5 +1,7 @@
 import { container } from 'tsyringe';
 
+import './providers';
+
 import IDevelopersRepository from '@modules/developers/repositories/IDevelopersRepository';
 import DevelopersRepository from '@modules/developers/infra/typeorm/repositories/DevelopersRepository';
 
