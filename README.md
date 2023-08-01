@@ -113,15 +113,7 @@ yarn test
 
 No front-end utilizei o `styled-components` para escrever o CSS, pois acredito que há uma melhor separação dos componentes e seus estilos, eliminando bugs devido a colisão de nomes de classes e também acredito numa melhor manutenção do CSS.
 
-Particularmente gostei do front-end. Também adicionei alguns `@media` para deixar o layout com responsividade. Característica que observo bastante nas páginas web atuais. Ficaria melhor se tivesse adicionado a página de Sign In.
-
-<p align="center">
-  <img src="web/public/dashboard-01.png" style="max-width:70%;">
-  <img src="web/public/dashboard-02.png" style="max-width:70%;">
-  <img src="web/public/dashboard-03.png" style="max-width:70%;">
-</p>
-
-
+Adicionei alguns `@media` para deixar o layout com responsividade. Característica que observo bastante nas páginas web atuais.
 
 ```bash
 cd web 
