@@ -1,23 +1,15 @@
-<h1 align="center">
-  <img src="https://www.gazin.com.br/images/svg/new-logo.svg" alt="Logo">
-</h1>
-
 <h3 align="center">
-  <!-- alterar link para Gazin -->
-  Challenge potential-crud <a href="https://www.gazin.com.br/">Gazin</a>
+  Potential Crud
 </h3>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/lucasfdcampos/">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-Lucas%20Campos-%23ff9d2e">
   </a>
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/lucasfdcampos/gazin-tech-potential-crud?color=%23ff9d2e">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/lucasfdcampos/gazin-tech-potential-crud?color=%23ff9d2e">
-  <a href="https://github.com/lucasfdcampos/gazin-tech-potential-crud/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/lucasfdcampos/gazin-tech-potential-crud?color=%23ff9d2e">
-  </a>
-  <a href="https://github.com/lucasfdcampos/gazin-tech-potential-crud/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/lucasfdcampos/gazin-tech-potential-crud?color=%23ff9d2e">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/lucasfdcampos/potential-crud?color=%23ff9d2e">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/lucasfdcampos/potential-crud?color=%23ff9d2e">
+  <a href="https://github.com/lucasfdcampos/potential-crud/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/lucasfdcampos/potential-crud?color=%23ff9d2e">
   </a>
 </p>
 
@@ -29,7 +21,7 @@
 </p>
 
 <p align="center">
-<a href="https://insomnia.rest/run/?label=&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasfdcampos%2Fgazin-tech-potential-crud%2Fmaster%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+<a href="https://insomnia.rest/run/?label=&uri=https%3A%2F%2Fraw.githubusercontent.com%2Flucasfdcampos%2Fpotential-crud%2Fmaster%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
 
 ## Sobre
@@ -58,7 +50,7 @@ Utilizei a Stack: Node.js (backend) e React.js (Front-end) por ser as tecnologia
 ### **Baixando o repositório**
 
 ```bash
-git clone https://github.com/lucasfdcampos/gazin-tech-potential-crud.git
+git clone https://github.com/lucasfdcampos/potencial-crud.git
 ```
 
 ### **Docker**
@@ -66,13 +58,13 @@ git clone https://github.com/lucasfdcampos/gazin-tech-potential-crud.git
 Não coloquei toda aplicação no Docker compose por não ter - ainda - familiaridade com o mesmo.
 
 ```bash
-docker run --name gazin_postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+docker run --name postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 ```
 
 ### **DataBase**
 
 ```bash
-CREATE DATABASE gazin_dev
+CREATE DATABASE dev
 ```
 
 ### **Back-end**
@@ -128,11 +120,6 @@ Particularmente gostei do front-end. Também adicionei alguns `@media` para deix
   <img src="web/public/dashboard-03.png" style="max-width:70%;">
 </p>
 
-
-<p align="center">
-  Utilizei um tema <i>dark</i> e as cores da <a href="https://www.gazin.com.br/">Gazin</a>.<br />
-  <img src="web/public/dashboard-04.png" style="max-width:70%;">
-</p>
 
 
 ```bash

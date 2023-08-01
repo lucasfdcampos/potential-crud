@@ -24,7 +24,7 @@ export default class DeveloperController {
       age,
       hobby,
       birthdate: parsedBirthDate,
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     return response.json(classToClass(developer));

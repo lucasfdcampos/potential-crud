@@ -8,6 +8,4 @@ coverage
 ormconfig.json
 dist
 !tmp/.gitkeep
-!tmp/gazin-teo.jpeg
 !tmp/uploads/.gitkeep
-!tmp/uploads/gazin-teo.jpeg

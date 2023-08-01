@@ -22,7 +22,7 @@ describe('DeleteDeveloper', () => {
       sex: 'M',
       hobby: 'code',
       birthdate: new Date(),
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     const result = await deleteDeveloper.execute(developer.id);

@@ -14,7 +14,7 @@ describe('ListDeveloper', () => {
       sex: 'M',
       hobby: 'code',
       birthdate: new Date(),
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     const developers = await findByName.execute(developer.name);

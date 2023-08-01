@@ -22,7 +22,7 @@ describe('UpdateDeveloper', () => {
       sex: 'M',
       hobby: 'code',
       birthdate: new Date(),
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     const updatedDeveloper = await updateDeveloper.execute({

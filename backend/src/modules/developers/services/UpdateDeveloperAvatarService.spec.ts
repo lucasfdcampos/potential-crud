@@ -26,7 +26,7 @@ describe('UpdateDeveloperAvatar', () => {
       sex: 'M',
       hobby: 'code',
       birthdate: new Date(),
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     await updateDeveloperAvatar.execute({
@@ -44,7 +44,7 @@ describe('UpdateDeveloperAvatar', () => {
       sex: 'M',
       hobby: 'code',
       birthdate: new Date(),
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     await expect(
@@ -76,7 +76,7 @@ describe('UpdateDeveloperAvatar', () => {
       sex: 'M',
       hobby: 'code',
       birthdate: new Date(),
-      avatar: 'gazin-teo.jpeg',
+      avatar: 'user.jpeg',
     });
 
     await updateDeveloperAvatar.execute({
